@@ -46,13 +46,16 @@ if __name__ == '__main__':
 	s.bind((host, port))
 	s.listen(5)
 
+	i = 0	
+
 	while True:
 	    conn, addr = s.accept()
 	    # print 'connection from', addr
 	    data = conn.recv(4)
 
 	    if data[0:4] == 'PCAP':
-		    pcap_fn = 'tmp.pcap'
+		    pcap_fn = 'dump.pcap' + str(i)
+		    i = i + 1
 		    f = open(pcap_fn, 'a+')
 		    while True:
 	        	# print('receiving data...')
